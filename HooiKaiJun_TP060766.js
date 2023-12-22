@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-// Read the content of the 'pcparts.json' file
+// Read the content of the 'HouseRentDataset.json' file
 fs.readFile('HouseRentDataset.json', 'utf8', (err, data) => {
   if (err) {
     console.error('Error reading the file:', err);

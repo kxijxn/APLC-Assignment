@@ -97,4 +97,38 @@ function totalData2(data) {
 
 totalData2(dataSet);
 
+// Imperative Approach (map)
+function displayCity(data){
+  const city = [];
+  for(let i = 0; i < data.length; i++){
+    city.push(data[i].City);
+  }
+  console.log(city);
+}
+
+displayCity(dataSet);
+
+// Functional Approach (map)
+function displayCity2(data) {
+  const city = data.map((house) => {
+      return house.City;
+  });
+
+  console.log(city);
+}
+displayCity2(dataSet);
+
+// Imperative Approach (curry)
+function setCity(city) {
+  return function (house) {
+      return {
+          ...house,
+          City: city,
+      };
+  };
+}
+
+// Functional Approach (curry)
+const setCity2 = (city) => (house) => ({ ...house, City: city });
+
 });

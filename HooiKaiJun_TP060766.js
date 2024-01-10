@@ -132,11 +132,15 @@ function setCity(city) {
       };
   };
 }
+const originalHouse = dataSet[0];
+console.log(originalHouse);
 const updatedHouse = setCity("Bangalore")(dataSet[0]);
 console.log(updatedHouse);
 
 // Functional Approach (curry)
 const setCity2 = (city) => (house) => ({ ...house, City: city });
+const originalHouse2 = dataSet[1];
+console.log(originalHouse2);
 const updatedHouse2 = setCity2("Bangalore")(dataSet[1]);
 console.log(updatedHouse);
 

@@ -98,23 +98,27 @@ function totalData2(data) {
 totalData2(dataSet);
 
 // Imperative Approach (map)
+// Slice the City from the dataset
 function displayCity(data){
   const city = [];
-  for(let i = 0; i < data.length; i++){
-    city.push(data[i].City);
+  for (let i = 0; i < data.length; i++) {
+    const currentCity = data[i].City;
+    if (!city.includes(currentCity)) {
+      city.push(currentCity);
+      console.log(currentCity);
+    }
   }
-  console.log(city);
 }
 
 displayCity(dataSet);
 
 // Functional Approach (map)
+// Slice the City from the dataset
 function displayCity2(data) {
-  const city = data.map((house) => {
-      return house.City;
+  const uniqueCities = new Set(data.map((house) => house.City));
+  uniqueCities.forEach((city) => {
+    console.log(city);
   });
-
-  console.log(city);
 }
 displayCity2(dataSet);
 
@@ -127,8 +131,12 @@ function setCity(city) {
       };
   };
 }
+const updatedHouse = setCity("Bangalore")(dataSet[0]);
+console.log(updatedHouse);
 
 // Functional Approach (curry)
 const setCity2 = (city) => (house) => ({ ...house, City: city });
+const updatedHouse2 = setCity2("Bangalore")(dataSet[1]);
+console.log(updatedHouse);
 
 });

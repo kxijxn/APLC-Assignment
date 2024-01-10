@@ -24,9 +24,10 @@ function displayHouses(data) {
     console.log(`Number of houses in Hyderabad: ${hyderabadCount}`);
 }
 
-displayHouses(dataSet)
+displayHouses(dataSet);
 
-// // Functional Approach (forEach)
+
+// Functional Approach (forEach)
 function displayHouses2(data) {
   let hyderabadCount = 0;
 
@@ -41,36 +42,38 @@ function displayHouses2(data) {
 
 displayHouses2(dataSet);
 
-// // Imperative Approach (filter)
-// // Display the rentals that are less than or equal to 25000
-function displayRental(data){
-  const numRent = [];
+// Imperative Approach (filter)
+// Rent less than 25000
+function displayRental(data) {
+  let count = 0;
 
-  for (let i = 0; i < data.length; i++){
-    if (data[i].Rent <= 25000){
-        numRent.push(data[i]);
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].Rent <= 25000) {
+      count++;
     }
   }
-  return numRent;
+
+  return ("Number of houses with rent less than 25000: " + count);
 }
 
 const numRent = displayRental(dataSet)
 console.log(numRent);
 
-// // Functional Approach (filter)
+// Functional Approach (filter)
 function displayRental2(data) {
-  const numRent = [];
+  let numRent = 0;
 
 
   data.filter((house) => {
       if (house.Rent <= 25000) {
-          numRent.push(house);
+          numRent++;
       }
   });
-  console.log(numRent);
+  return ("Number of houses with rent less than 25000: " + numRent);
 }
 
-displayRental2(dataSet);
+const numRent2 = displayRental2(dataSet);
+console.log(numRent2);
 
 // Imperative Approach (reduce)
 // Calculate BHK that are less than 3
@@ -98,7 +101,6 @@ function totalData2(data) {
 totalData2(dataSet);
 
 // Imperative Approach (map)
-// Slice the City from the dataset
 function displayCity(data){
   const city = [];
   for (let i = 0; i < data.length; i++) {
@@ -113,7 +115,6 @@ function displayCity(data){
 displayCity(dataSet);
 
 // Functional Approach (map)
-// Slice the City from the dataset
 function displayCity2(data) {
   const uniqueCities = new Set(data.map((house) => house.City));
   uniqueCities.forEach((city) => {

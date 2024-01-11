@@ -9,166 +9,173 @@ fs.readFile('HouseRentDataset.json', 'utf8', (err, data) => {
     const dataSet = JSON.parse(data);
 
 
-
-// Imperative Approach (forEach)
-// Display number houses that are in Hyderabad
-function displayHouses(data) {
-    let hyderabadCount = 0;
-
-    for (let i = 0; i < data.length; i++) {
-        if (data[i].City === "Hyderabad") {
-            hyderabadCount++;
-        }
-    }
-
-    console.log(`Number of houses in Hyderabad: ${hyderabadCount}`);
-}
-
-displayHouses(dataSet);
-
-
-// Functional Approach (forEach)
-function displayHouses2(data) {
-  let hyderabadCount = 0;
-
-  data.forEach((house) => {
-      if (house.City === "Hyderabad") {
-          hyderabadCount++;
-      }
-  });
-
-  console.log(`Number of houses in Hyderabad: ${hyderabadCount}`);
-}
-
-displayHouses2(dataSet);
-
 // Imperative Approach (filter)
 // Rent less than 25000
-function displayRental(data) {
-  let count = 0;
+// function displayRental(data) {
+//   let count = 0;
 
-  for (let i = 0; i < data.length; i++) {
-    if (data[i].Rent <= 25000) {
-      count++;
-    }
-  }
+//   for (let i = 0; i < data.length; i++) {
+//     if (data[i].Rent <= 25000) {
+//       count++;
+//     }
+//   }
 
-  return ("Number of houses with rent less than 25000: " + count);
-}
+//   return ("Number of houses with rent less than 25000: " + count);
+// }
 
-const numRent = displayRental(dataSet)
-console.log(numRent);
+// const numRent = displayRental(dataSet)
+// console.log(numRent);
 
 // Functional Approach (filter)
-function displayRental2(data) {
-  let numRent = 0;
+// function displayRental2(data) {
 
+//   if(!data || data.length === 0){
+//     console.log("No data or empty dataset");
+//     return;
+//   }
 
-  data.filter((house) => {
-      if (house.Rent <= 25000) {
-          numRent++;
-      }
-  });
-  return ("Number of houses with rent less than 25000: " + numRent);
-}
+//   let numRent = 0;
 
-const numRent2 = displayRental2(dataSet);
-console.log(numRent2);
+//   data.filter((house) => {
+//       if (house.Rent <= 25000) {
+//           numRent++;
+//       }
+//   });
+//   return ("Number of houses with rent less than 25000: " + numRent);
+// }
+
+// const numRent2 = displayRental2(dataSet);
+// console.log(numRent2);
 
 // Imperative Approach (sort)
 // Sort by Rent in ascending order
-function sortRent(data) {
-  for (let i = 0; i < data.length; i++) {
-    for (let j = 0; j < data.length - 1 - i; j++) {
-      if (data[j].Rent > data[j + 1].Rent) {
-        // Swap elements if they are in the wrong order
-        const temp = data[j];
-        data[j] = data[j + 1];
-        data[j + 1] = temp;
-      }
-    }
-  }
+// function sortRent(data) {
+//   for (let i = 0; i < data.length; i++) {
+//     for (let j = 0; j < data.length - 1; j++) {
+//       if (data[j].Rent > data[j + 1].Rent) {
+//         let temp = data[j];
+//         data[j] = data[j + 1];
+//         data[j + 1] = temp;
+//       }
+//     }
+//   }
+//   return data;
+// }
 
-  console.log(data.Rent);
-}
-
-sortRent(dataSet);
+// const sortedRent = sortRent(dataSet);
+// console.log(sortedRent);
 
 // Functional Approach (sort)
-function sortRent2(data) {
-  const sortedRent = data.sort((a, b) => a.Rent - b.Rent);
-  console.log(sortedRent);
-}
+// function sortRent2(data) {
+//   if (!data || data.length === 0) {A
+//     console.log("No data or empty dataset");
+//     return;
+//   }
 
-sortRent2(dataSet);
+//   const sortedRent = data.sort((a, b) => a.Rent - b.Rent);
+//   return sortedRent;
+// }
+
+// const sorted = sortRent2(dataSet);
+// console.log(sorted);
 
 // Imperative Approach (reduce)
 // Calculate BHK that are less than 3
-function totalData(data){
-  let total = 0;
-  for(let i = 0; i < data.length; i++){
-    if(data[i].BHK < 3){
-      total++;
-    }
-  }
-  console.log(`Houses with less than 3 BHK is: ${total}`);
-}
+// function totalData(data){
+//   let total = 0;
+//   for(let i = 0; i < data.length; i++){
+//     if(data[i].BHK < 3){
+//       total++;
+//     }
+//   }
+//   return `Houses with less than 3 BHK is: ${total}`;
+// }
 
-totalData(dataSet)
+// const total = totalData(dataSet)
+// console.log(total);
 
 // Functional Approach (reduce)
 function totalData2(data) {
-  const total = data.reduce((accumulator, currentValue) => {
-    return currentValue.BHK < 3 ? accumulator + 1 : accumulator;
-  }, 0);
+  if (!data || data.length === 0) {
+    console.log("No data or empty dataset");
+    return;
+  }
 
-  console.log(`Houses with less than 3 BHK is: ${total}`);
+  const total = data.reduce((accumulator, currentValue) => 
+    currentValue && currentValue.BHK && currentValue.BHK < 3 ? accumulator + 1 : accumulator,
+    0
+  );
+
+  return `Houses with less than 3 BHK is: ${total}`;
 }
 
-totalData2(dataSet);
+const total2 = totalData2(dataSet);
+console.log(total2);
 
 // Imperative Approach (map)
-function displayCity(data){
-  const city = [];
-  for (let i = 0; i < data.length; i++) {
-    const currentCity = data[i].City;
-    if (!city.includes(currentCity)) {
-      city.push(currentCity);
-      console.log(currentCity);
-    }
-  }
-}
+// Display all the cities in the dataset once
+// function displayCity(data){
+//   const city = [];
+//   for (let i = 0; i < data.length; i++) {
+//     const currentCity = data[i].City;
+//     if (!city.includes(currentCity)) {
+//       city.push(currentCity);
+//       console.log(currentCity);
+//     }
+//   }
+// }
 
-displayCity(dataSet);
+// displayCity(dataSet);
 
 // Functional Approach (map)
-function displayCity2(data) {
-  const uniqueCities = new Set(data.map((house) => house.City));
-  uniqueCities.forEach((city) => {
-    console.log(city);
-  });
-}
-displayCity2(dataSet);
+// function displayCity2(data) {
+//   if (!data || data.length === 0) {
+//     console.log("No data or empty dataset");
+//     return;
+//   }
+
+//   const uniqueCities = new Set(
+//     data
+//       .map((house) => house && house.City) // Extract city values
+//       .filter((city) => city !== null && city !== undefined)
+//   );
+
+//   uniqueCities.forEach((city) => {
+//     console.log(city);
+//   });
+// }
+
+
+// displayCity2(dataSet);
 
 // Imperative Approach (curry)
-function setCity(city) {
-  return function (house) {
-      return {
-          ...house,
-          City: city,
-      };
-  };
-}
-const originalHouse = dataSet[0];
-console.log(originalHouse);
-const updatedHouse = setCity("Bangalore")(dataSet[0]);
-console.log(updatedHouse);
+// Update the city of the first house in the dataset to 'Bangalore'
+// function setCity(city) {
+//   return function (house) {
+//       return {
+//           ...house,
+//           City: city,
+//       };
+//   };
+// }
+// const originalCity = dataSet[0];
+// console.log(originalCity);
+// const updatedCity = setCity("Bangalore")(dataSet[0]);
+// console.log(updatedCity);
 
 // Functional Approach (curry)
-const setCity2 = (city) => (house) => ({ ...house, City: city });
-const originalHouse2 = dataSet[1];
-console.log(originalHouse2);
-const updatedHouse2 = setCity2("Bangalore")(dataSet[1]);
-console.log(updatedHouse);
+// const setCity2 = (city) => (house) => {
+//   if (house && typeof house === 'object') {
+//     // Use Object.assign to ensure immutability
+//     return Object.assign({}, house, { City: city });
+//   } else {
+//     // Handle the case where house is not a valid object
+//     return { City: city };
+//   }
+// };
+// const originalCity2 = dataSet[0];
+// console.log(originalCity2);
+// const updatedCity2 = setCity2("Bangalore")(dataSet[0]);
+// console.log(updatedCity2);
 
 });

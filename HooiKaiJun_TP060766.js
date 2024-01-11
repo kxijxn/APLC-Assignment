@@ -75,6 +75,33 @@ function displayRental2(data) {
 const numRent2 = displayRental2(dataSet);
 console.log(numRent2);
 
+// Imperative Approach (sort)
+// Sort by Rent in ascending order
+function sortRent(data) {
+  for (let i = 0; i < data.length; i++) {
+    for (let j = 0; j < data.length - 1 - i; j++) {
+      if (data[j].Rent > data[j + 1].Rent) {
+        // Swap elements if they are in the wrong order
+        const temp = data[j];
+        data[j] = data[j + 1];
+        data[j + 1] = temp;
+      }
+    }
+  }
+
+  console.log(data.Rent);
+}
+
+sortRent(dataSet);
+
+// Functional Approach (sort)
+function sortRent2(data) {
+  const sortedRent = data.sort((a, b) => a.Rent - b.Rent);
+  console.log(sortedRent);
+}
+
+sortRent2(dataSet);
+
 // Imperative Approach (reduce)
 // Calculate BHK that are less than 3
 function totalData(data){
